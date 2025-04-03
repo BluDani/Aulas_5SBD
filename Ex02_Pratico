@@ -58,10 +58,13 @@ WHERE SALDO > 9000
 ORDER BY SALDO desc;
 
 10. Liste os clientes que moram em Nova Iguaçu ou que tenham "Silva" no nome.
-
+SELECT * FROM CLIENTE
+WHERE CIDADE = 'Nova Iguaçu' OR
+CLIENTE_NOME  LIKE '%Silva%';
 
 11. Exiba o saldo das contas com arredondamento para o inteiro mais próximo.
-
+SELECT ROUND (SALDO,0)
+FROM CONTA
 
 12. Exiba o nome de todos os clientes em letras maiúsculas.
 SELECT UPPER(CLIENTE_NOME) AS NOME
@@ -69,4 +72,6 @@ FROM CLIENTE
 
 13. Exiba os nomes dos clientes que não são das cidades de Teresópolis nem Campos dos
 Goytacazes.
+SELECT CLIENTE_NOME FROM CLIENTE
+WHERE NOT CIDADE = 'Teresópolis' AND NOT CIDADE = 'Campos dos Goytacazes'
 
