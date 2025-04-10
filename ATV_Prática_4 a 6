@@ -34,11 +34,13 @@ SELECT TO_CHAR(SYSDATE + 30, 'DD/MM/YYYY') AS "Data de vencimento simulada"
 FROM DUAL;
 
 10.Exiba o número de dias entre a data de abertura da conta e a data atual.
-
+SELECT SYSDATE - TO_DATE(DATA_ABERTURA 'DD-MM-YYYY') AS "CONTA ABERTA HÁ"
+FROM CONTA;
 
 Parte 2 – Conversão de Dados e Tratamento de Nulos (Seção 5)
 11.Apresente o saldo de cada conta formatado como moeda local.
-
+SELECT TO_CHAR(SALDO, 'L999,999,999.99', 'NLS_CURRENCY = ''R$'' ') AS moeda_local
+FROM CONTA;
 
 12. Converta a data de abertura da conta para o formato 'dd/mm/yyyy'.
 SELECT TO_CHAR(DATA_ABERTURA 'DD/MM/YYYY')
@@ -67,7 +69,9 @@ FROM CLIENTE
 
 Parte 3 – Junções entre Tabelas (Seção 6)
 16.Exiba o nome de cada cliente, o número da conta e o saldo correspondente.
-
+SELECT CLIENTE_NOME, CONTA_NUMERO, SALDO
+FROM CLIENTE 
+JOIN CONTA ON CLIENTE_COD = CLIENTE_CLIENTE_COD;
 
 17. Liste os nomes dos clientes e os nomes das agências onde mantêm conta.
 SELECT CLIENTE_NOME, AGENCIA_NOME
@@ -78,3 +82,6 @@ JOIN AGENCIA ON AGENCIA_COD = AGENCIA_AGENCIA_COD
 18. Mostre todas as agências, mesmo aquelas que não possuem clientes vinculados (junção
 externa esquerda).
 
+SELECT DISTINCT AGENCIA_NOME
+FROM AGENCIA
+LEFT JOIN CONTA ON AGENCIA_AGENCIA_COD = AGENCIA_COD;
